@@ -1,10 +1,16 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const emailRoutes = require("./routes/emailRoutes");
-
+const mongoose = require("mongoose");
 const app = express();
 dotenv.config();
 
+const mongoURL = "mongodb+srv://Aniket_Paul:C563ramdashati@cluster0.qxsgiqm.mongodb.net/?retryWrites=true&w=majority";
+mongoose.connect(mongoURL,{
+  useNewUrlParser : true,
+}).then(()=>{
+  console.log("connected to the database");
+});
 const cors = require("cors");
 const corsOptions = {
   origin: "*",
