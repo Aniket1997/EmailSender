@@ -5,12 +5,12 @@ const mongoose = require("mongoose");
 const app = express();
 dotenv.config();
 
-const mongoURL = "mongodb+srv://Aniket_Paul:C563ramdashati@cluster0.qxsgiqm.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(mongoURL,{
-  useNewUrlParser : true,
-}).then(()=>{
-  console.log("connected to the database");
-});
+// const mongoURL = "mongodb+srv://Aniket_Paul:C563ramdashati@cluster0.qxsgiqm.mongodb.net/?retryWrites=true&w=majority";
+// mongoose.connect(mongoURL,{
+//   useNewUrlParser : true,
+// }).then(()=>{
+//   console.log("connected to the database");
+// });
 const cors = require("cors");
 const corsOptions = {
   origin: "*",
@@ -18,7 +18,14 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 
-app.use(cors()); // Use this after the variable declaration
+app.use(cors(
+    {
+        origin: ["https://email-sender-7uda.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
+app.use(express.json()) // Use this after the variable declaration
 
 app.use(express.json()); // tell the server to accept the json data from frontend
 
